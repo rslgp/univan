@@ -1,0 +1,25 @@
+<script>
+const params = new Proxy(new URLSearchParams(window.location.search), {
+  get: (searchParams, prop) => searchParams.get(prop),
+});
+
+
+  const xhr = new XMLHttpRequest();
+
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4) {
+      var rota = xhr.response.json().trip.locations;
+      var b ="";
+      for(var i of r.trip.locations){
+        b+="\'"+i.lat+","+i.lon+"\'/";
+      }
+      b= "https://www.google.com/maps/dir/"+b;
+      //console.log(b)
+      xhr.send(b);
+      window.location.replace(b);      
+    }
+  }
+
+  xhr.open('GET', params.server+"/"+params.jsonString, true);
+  
+</script>
