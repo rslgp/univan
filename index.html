@@ -9,7 +9,7 @@ var url = params.server+"/optimized_route?json="+params.jsonString;
 
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4) {
-      var data = xhr.response;
+      var data = xhr.response.json();
       var b ="";
       for(var i of data.trip.locations){
         b+="\'"+i.lat+","+i.lon+"\'/";
