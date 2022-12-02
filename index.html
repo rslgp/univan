@@ -3,24 +3,26 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
   get: (searchParams, prop) => searchParams.get(prop),
 });
 
+var url = params.server+"/optimized_route?json="+params.jsonString;
 
-  const xhr = new XMLHttpRequest();
+  console.log(url);
 
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4) {
-      var rota = xhr.response.json().trip.locations;
-      var b ="";
-      for(var i of r.trip.locations){
-        b+="\'"+i.lat+","+i.lon+"\'/";
-      }
-      b= "https://www.google.com/maps/dir/"+b;
-      console.log(b)
-      xhr.send(b);
-      window.location.replace(b);      
+  //xhr.open('GET', params.server+"/optimized_route?json="+params.jsonString, true);
+  
+  async function getUrl(url){    
+    const xhr = new XMLHttpRequest();
+    
+    const response = await fetch(url);
+    var data = await response.json();
+    var b ="";
+    for(var i of r.trip.locations){
+      b+="\'"+i.lat+","+i.lon+"\'/";
     }
+    b= "https://www.google.com/maps/dir/"+b;
+    console.log(b);
+    xhr.send(b);
+    window.location.replace(b);    
   }
-  console.log(params.server+"/optimized_route?json=/"+params.jsonString);
-
-  xhr.open('GET', params.server+"/optimized_route?json="+params.jsonString, true);
+  getUrl(url);
   
 </script>
