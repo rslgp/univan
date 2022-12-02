@@ -20,6 +20,6 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
     }
   }
 
-  xhr.open('GET', params.server+"/"+params.jsonString, true);
+  xhr.open('GET', params.server+"/optimized_route?json=/"+params.jsonString, true);
   
 </script>
