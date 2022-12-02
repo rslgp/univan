@@ -7,25 +7,6 @@ var url = params.server+"/optimized_route?json="+params.jsonString;
   
   const xhr = new XMLHttpRequest();  
 
-  xhr.onreadystatechange = () => {
-    if (xhr.readyState === 4) {
-      console.log(xhr.response)
-      var data = xhr.response;
-      var b ="";
-      for(var i of data.json().trip.locations){
-        b+="\'"+i.lat+","+i.lon+"\'/";
-      }
-      b= "https://www.google.com/maps/dir/"+b;
-      console.log(b);      
-      xhr.send(b);
-      window.location.replace(b);    
-
-    }
-  }
-
-  xhr.open('GET', url, true);
-  
-
   console.log(url);
 
   //xhr.open('GET', params.server+"/optimized_route?json="+params.jsonString, true);
