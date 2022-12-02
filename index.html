@@ -5,7 +5,7 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
 
 var url = params.server+"/optimized_route?json="+params.jsonString;
   
-  const xhr = new XMLHttpRequest();
+  const xhr = new XMLHttpRequest();  
 
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4) {
@@ -29,8 +29,7 @@ var url = params.server+"/optimized_route?json="+params.jsonString;
 
   //xhr.open('GET', params.server+"/optimized_route?json="+params.jsonString, true);
   
-  async function getUrl(url){    
-    const xhr2 = new XMLHttpRequest();
+  async function getUrl(url, callback){    
     
     const response = await fetch(url);
     var data = await response.json();
@@ -40,9 +39,12 @@ var url = params.server+"/optimized_route?json="+params.jsonString;
     }
     b= "https://www.google.com/maps/dir/"+b;
     console.log(b);
-    xhr2.send(b);
-    window.location.replace(b);    
+    xhr.send(b);
+    callback(b);    
   }
-  getUrl(url);
+  getUrl(url, redirect);
+  function redirect(b){
+    window.location.replace(b);
+  }
   
 </script>
