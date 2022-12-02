@@ -14,11 +14,12 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
         b+="\'"+i.lat+","+i.lon+"\'/";
       }
       b= "https://www.google.com/maps/dir/"+b;
-      //console.log(b)
+      console.log(b)
       xhr.send(b);
       window.location.replace(b);      
     }
   }
+  console.log(params.server+"/optimized_route?json=/"+params.jsonString);
 
   xhr.open('GET', params.server+"/optimized_route?json=/"+params.jsonString, true);
   
