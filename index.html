@@ -19,6 +19,7 @@ var url = params.server+"/optimized_route?json="+params.jsonString;
     }
     b= "https://www.google.com/maps/dir/"+b;
     console.log(b);
+    document.location.href = b;
     callback(b);    
   }
   getUrl(url, redirect);
