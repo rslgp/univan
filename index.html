@@ -5,11 +5,9 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
 
 var url = params.server+"/optimized_route?json="+params.jsonString;
   
-  const xhr = new XMLHttpRequest();  
 
   console.log(url);
 
-  //xhr.open('GET', params.server+"/optimized_route?json="+params.jsonString, true);
   
   async function getUrl(url, callback){    
     
@@ -21,7 +19,6 @@ var url = params.server+"/optimized_route?json="+params.jsonString;
     }
     b= "https://www.google.com/maps/dir/"+b;
     console.log(b);
-    xhr.send(b);
     callback(b);    
   }
   getUrl(url, redirect);
