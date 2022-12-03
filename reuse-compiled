@@ -1,0 +1,28 @@
+docker compose -f docker-composer-volume.yml up
+
+version: '3.0'
+services:
+  valhalla:
+    image: gisops/valhalla:latest
+    ports:
+      - "8002:8002"
+    volumes:
+      - 485c92cace7f94e21baa35c78e0dd2a946f7ea3c3c8e6c89a4a9ecb779f4542a:/custom_files
+    environment:
+      # The tile_file must be located in the `custom_files` folder.
+      # The tile_file has priority and is used when valid.
+      # If the tile_file doesn't exist, the url is used instead.
+      # Don't blank out tile_url when you use tile_file and vice versa.
+      - tile_urls=http://download.geofabrik.de/south-america/brazil/nordeste-latest.osm.pbf
+      # Get correct bounding box from e.g. https://boundingbox.klokantech.com/
+      - min_x=18 # -> Albania | -180 -> World
+      - min_y=8 # -> Albania | -90  -> World
+      - max_x=22 # -> Albania |  180 -> World
+      - max_y=9 # -> Albania |  90  -> World
+      - use_tiles_ignore_pbf=True
+      - force_rebuild=False
+      - build_elevation=False
+      - build_admins=False
+      - build_time_zones=False
+      - build_tar=False
+      - server_threads=500
