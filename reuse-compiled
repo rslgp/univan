@@ -26,3 +26,6 @@ services:
       - build_time_zones=False
       - build_tar=False
       - server_threads=500
+
+https://linestrings.com/bbox/#-34.8,-7.97,-35,-8.2
+http://bboxfinder.com/#-8.141145,-34.962959,-7.967778,-34.824257
